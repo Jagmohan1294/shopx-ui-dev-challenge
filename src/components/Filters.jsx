@@ -5,7 +5,7 @@ function Filters(props) {
     return (
         <div className="filters">
             <div>
-                3 items remaining
+                {props.activeCount} items remaining
             </div>
             <div className="filter-options">
                 <button className="button" onClick={() =>props.onFilterApply('all')}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 
 import Filters from './Filters'
@@ -13,6 +13,19 @@ function TaskList() {
     const [lists, setLists] = useState(LISTS)
     const [filteredLists, setFilteredLists] = useState(null)
     const [task, setTask] = useState('')
+    const [filter, setFilter] = useState('')
+    
+    useEffect(() => {
+          if(filter === 'all'){
+            setFilteredLists(null)   
+         } else if(filter === 'active') {
+            setFilteredLists(lists.filter(list => list.active))
+         } else if(filter === 'completed') {
+            setFilteredLists(lists.filter(list => !list.active))
+        } else if(filter === 'clearCompleted') {
+            setLists(lists.filter(list => list.active)) 
+        }
+    }, [filter, lists])
     const handleDeleteItem = (id) => {
         const newLists = lists.filter(list => list.id !== id)
         setLists(newLists)
@@ -32,15 +45,7 @@ function TaskList() {
         }
     }
     const onFilterApply = (buttonKey) => {
-         if(buttonKey === 'all'){
-            setFilteredLists(null)   
-         } else if(buttonKey === 'active') {
-            setFilteredLists(lists.filter(list => list.active))
-         } else if(buttonKey === 'completed') {
-            setFilteredLists(lists.filter(list => !list.active))
-        } else if(buttonKey === 'clearCompleted') {
-            setLists(lists.filter(list => list.active)) 
-        }
+        setFilter(buttonKey)
     }
     const renderLists = filteredLists || lists
     return (
@@ -48,7 +53,7 @@ function TaskList() {
             <div className="header">
                 my list
           </div>
-            <Filters onFilterApply={onFilterApply}/>
+            <Filters onFilterApply={onFilterApply} activeCount={lists.filter(list => list.active).length}/>
             <div className="lists-box">
                 <div className="add-list">
                     <form onSubmit={handleTaskSubmit}>
