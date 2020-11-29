@@ -1,25 +1,27 @@
 import React from 'react'
 import './Filters.css'
 
-function Filters(){
-    return(
+function Filters(props) {
+    return (
         <div className="filters">
             <div>
                 3 items remaining
             </div>
             <div className="filter-options">
-                <button>
+                <button className="button" onClick={() =>props.onFilterApply('all')}>
                     All
                 </button>
-                <button>
+                <button className="button" onClick={() =>props.onFilterApply('active')}>
                     Active
                 </button>
-                <button>
+                <button className="button" onClick={() =>props.onFilterApply('completed')}>
                     Completed
                 </button>
             </div>
             <div>
-                CLEAR COMPLETED
+                <button className="button">
+                    CLEAR COMPLETED
+                </button>
             </div>
         </div>
     )

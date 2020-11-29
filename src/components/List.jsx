@@ -2,6 +2,7 @@ import React from 'react'
 import './List.css'
 
 function List(props){
+  //  console.log(props)
     return(
         <div className="list">
             <div>
@@ -11,7 +12,9 @@ function List(props){
                 {props.task}
             </div>
             <div>
-                delete option
+                <button onClick={() => props.handleDeleteItem(props.id)}>
+                    delete
+                </button>
             </div>
         </div>
     )
