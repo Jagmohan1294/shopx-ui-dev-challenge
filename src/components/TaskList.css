@@ -1,0 +1,10 @@
+.task-list {
+    height: 80vh;
+    width: 40vw;
+}
+.header {
+    border-bottom: 1px solid grey;
+    padding: 5px;
+    font-size: 44px;
+    text-align: center;
+}
