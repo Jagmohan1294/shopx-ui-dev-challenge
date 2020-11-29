@@ -7,7 +7,7 @@ function Filters(){
             <div>
                 3 items remaining
             </div>
-            <div>
+            <div className="filter-options">
                 <button>
                     All
                 </button>
